@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123b70">
+  <title>PMIST SMART BUS - Driver</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      background: #f1f5f9;
+      color: #172033;
+      font-family: Arial, sans-serif;
+    }
+
+    .driver-container {
+      width: min(92%, 520px);
+      margin: 28px auto;
+    }
+
+    .driver-header {
+      background: #123b70;
+      color: white;
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .driver-header h1 {
+      margin: 0 0 8px;
+      font-size: 25px;
+    }
+
+    .driver-card {
+      background: white;
+      padding: 22px;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 18px #0000000d;
+    }
+
+    .driver-card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .driver-card label {
+      display: block;
+      margin: 15px 0 7px;
+      font-weight: bold;
+    }
+
+    .driver-card input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    .driver-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 14px;
+      border: 0;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: #1765d1;
+      color: white;
+    }
+
+    .start-btn {
+      background: #15803d;
+      color: white;
+    }
+
+    .stop-btn {
+      background: #b91c1c;
+      color: white;
+    }
+
+    .secondary-btn {
+      background: #e2e8f0;
+      color: #172033;
+    }
+
+    .status-box {
+      padding: 12px;
+      border-radius: 9px;
+      background: #f1f5f9;
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .driver-note {
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="driver-container">
+    <header class="driver-header">
+      <h1>🚌 PMIST SMART BUS</h1>
+      <p>Driver Dashboard · Live GPS Tracking</p>
+    </header>
+
+    <section id="loginSection" class="driver-card">
+      <h2>Driver Login</h2>
+      <p>Sign in using the driver account created in Firebase.</p>
+
+      <form id="loginForm">
+        <label for="email">Driver Email</label>
+        <input id="email" type="email"
+          autocomplete="username" required
+          placeholder="Enter driver email">
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+          autocomplete="current-password" required
+          placeholder="Enter Firebase password">
+
+        <button class="driver-btn primary-btn" type="submit">
+          Login
+        </button>
+      </form>
+
+      <p id="loginMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="dashboardSection" class="driver-card hidden">
+      <h2>Driver Dashboard</h2>
+
+      <p>Logged in as: <strong id="driverEmail">-</strong></p>
+
+      <label for="busId">Bus ID</label>
+      <input id="busId" type="text"
+        maxlength="50" required
+        placeholder="Example: bus-01">
+
+      <p class="driver-note">
+        Enter the exact bus ID used by your student tracking page.
+        Do not create a different ID for the same bus.
+      </p>
+
+      <div class="status-box">
+        <strong>Tracking status:</strong>
+        <span id="trackingStatus">Not started</span>
+      </div>
+
+      <div class="status-box">
+        <strong>GPS coordinates:</strong>
+        <div id="coordinates">No location received yet.</div>
+      </div>
+
+      <div class="status-box">
+        <strong>Firebase connection:</strong>
+        <span id="connectionStatus">Not connected</span>
+      </div>
+
+      <button id="startButton"
+        class="driver-btn start-btn" type="button">
+        Start Live Tracking
+      </button>
+
+      <button id="stopButton"
+        class="driver-btn stop-btn" type="button" disabled>
+        Stop Tracking
+      </button>
+
+      <button id="logoutButton"
+        class="driver-btn secondary-btn" type="button">
+        Logout
+      </button>
+
+      <p id="dashboardMessage" role="status"
+        aria-live="polite"></p>
+    </section>
+
+    <p class="driver-note">
+      Keep this page open while tracking. Allow location access when
+      prompted. GPS requires a supported secure context, normally HTTPS.
+    </p>
+  </main>
+
+  <script type="module" src="driver.js"></script>
+</body>
+</html>

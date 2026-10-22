@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMIST Live Bus Tracker</title><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"></head><body>
+<header><div class="logo">🚌</div><div><b>PMIST LIVE BUS TRACKER</b><small>Periyar Maniammai Institute of Science & Technology</small></div><a class="driverLink" href="driver.html">Driver sign-in ↗</a></header>
+<main><section class="sidebar"><p class="eyebrow">TRANSPORT DIVISION · SHIFT I</p><h1>Where is<br><em>my bus?</em></h1><p class="muted">Find your PMIST bus and see its latest GPS location when an authorized driver is sharing it.</p>
+<div class="search"><label for="q">Search bus or route</label><div class="row"><input id="q" placeholder="Try D1 or Kumbakonam"><button id="searchBtn">Search</button></div></div>
+<div class="listTitle"><h2>Morning buses</h2><span id="count"></span></div><div id="busList"></div>
+<div class="note"><b>Live tracking status</b><p id="status">Connecting to Firebase…</p>Only buses whose drivers have started GPS sharing will show live positions. Schedule data is from the supplied image.</div></section>
+<section class="mapCard"><div class="mapHead"><div><p class="eyebrow">PMIST · VALLAM, THANJAVUR</p><h2 id="selectedTitle">All buses</h2></div><span class="liveBadge"><i></i> LIVE DATA</span></div><div id="map"></div><div class="legend">🚌 Live bus location · Locations update automatically</div><div id="details">Select a bus to view its latest location and update time.</div><div class="foot">Map © OpenStreetMap contributors</div></section></main>
+<footer>PMIST college project · Shift I · Share location only with appropriate permission</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="routes.js"></script><script type="module" src="student.js"></script></body></html>

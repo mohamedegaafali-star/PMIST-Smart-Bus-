@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "locations": {
+      ".read": true,
+      "$busId": {
+        ".write": "auth != null && root.child('approvedDrivers').child(auth.uid).val() == true",
+        ".validate": "newData.hasChildren(['lat','lng','updatedAt'])",
+        "lat": {
+          ".validate": "newData.isNumber() && newData.val() >= -90 && newData.val() <= 90"
+        },
+        "lng": {
+          ".validate": "newData.isNumber() && newData.val() >= -180 && newData.val() <= 180"
+        },
+        "updatedAt": {
+          ".validate": "newData.isNumber()"
+        }
+      }
+    },
+    "approvedDrivers": {
+      ".read": "auth != null",
+      ".write": false
+    }
+  }
+}
